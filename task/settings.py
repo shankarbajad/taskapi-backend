@@ -31,6 +31,9 @@ DATABASES = {
     }
 }
 
+WHITENOISE_USE_FINDERS = True
+
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
@@ -43,7 +46,6 @@ SECRET_KEY = 'qelv8fyndk8aiz@vh-6^_^ta@jb^5t%*r5$t=7ij=dbq(lxdev'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-WHITENOISE_USE_FINDERS = True
 
 #ALLOWED_HOSTS = []
 
@@ -54,6 +56,7 @@ ALLOWED_HOSTS = ['taskapi1.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
