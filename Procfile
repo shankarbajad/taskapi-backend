@@ -1,1 +1,1 @@
-web: gunicorn taskapi1.herokuapp.wsgi --log-file -
+web: gunicorn task.wsgi --log-file -
