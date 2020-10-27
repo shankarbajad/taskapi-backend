@@ -18,24 +18,16 @@ django_heroku.settings(locals())
 # BASE_DIR = Path(__file__).resolve().parent.parent
 #BASE_DIR =  os.path.dirname(os.path.abspath(__file__))
 
-import dj_database_url
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '<database_name>',
-        'USER': '<user_name>',
-        'PASSWORD': '<password>',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
+
 WHITENOISE_USE_FINDERS = True
-
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -170,9 +162,8 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
-
-# import dj_database_url 
-# prod_db  =  dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(prod_db)
 
